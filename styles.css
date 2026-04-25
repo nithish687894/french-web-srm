@@ -63,8 +63,25 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
   position: relative;
-  cursor: none;
+  cursor: auto;
 }
+
+/* Hide system cursor only when JS is active (desktop). */
+.js body { cursor: none; }
+
+/* Always show normal cursor on touch devices / no-hover pointers */
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+  .js body { cursor: auto; }
+  .cursor-dot,
+  .cursor-trail,
+  .cursor-glow { display: none !important; }
+}
+
+/* Make interactive intent obvious */
+a,
+button,
+[role="button"] { cursor: pointer; }
 
 img {
   display: block;
@@ -726,9 +743,12 @@ h1 {
   object-fit: cover;
   transition: transform 0.7s ease, opacity 420ms var(--ease-out), filter 420ms var(--ease-out);
   filter: contrast(1.03) brightness(0.75) saturate(0.75);
-  opacity: 0;
+  opacity: 1;
 }
-.mosaic-item img.is-loaded { opacity: 1; }
+
+/* Fade-in only when JS is active (prevents “blank content” if JS/images fail) */
+.js .mosaic-item img { opacity: 0; }
+.js .mosaic-item img.is-loaded { opacity: 1; }
 
 .mosaic-item:hover img {
   transform: scale(1.08);
