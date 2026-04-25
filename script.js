@@ -1,3 +1,5 @@
+document.documentElement.classList.add("js");
+
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const revealItems = document.querySelectorAll(".reveal");

@@ -858,12 +858,18 @@ blockquote cite {
 }
 
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* Only animate reveals when JS is active */
+.js .reveal {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 900ms var(--ease-out), transform 900ms var(--ease-out);
 }
 
-.reveal.visible {
+.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
